@@ -1,0 +1,26 @@
+spring:
+    datasource:
+        url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/db_teste_vendas}
+        username: ${SPRING_DATASOURCE_USERNAME:usuario}
+        password: ${SPRING_DATASOURCE_PASSWORD:senha}
+        driverClassName: org.postgresql.Driver
+    jpa:
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+        defer-datasource-initialization: false
+        hibernate:
+            ddl-auto: none
+            show-sql: true
+        properties:
+            hibernate:
+                format_sql: true
+                use_sql_comments: true
+                log_sql_parameters: true
+    kafka:
+        bootstrap-servers: http://host.docker.internal:9092
+        producer:
+            key-serializer: org.apache.kafka.common.serialization.StringSerializer
+            value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+logging:
+  level:
+    org.springframework.web.filter.CorsFilter: DEBUG
+    org.springframework.web.cors: DEBUG

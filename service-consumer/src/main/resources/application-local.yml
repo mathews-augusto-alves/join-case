@@ -1,0 +1,48 @@
+spring:
+    mail:
+        username: emailsenderteste2025@gmail.com
+        password: svrh ayqp cdad hpjg
+    datasource:
+        url: jdbc:postgresql://host.docker.internal:5432/db_teste_vendas
+        username: usuario
+        password: senha
+        driverClassName: org.postgresql.Driver
+    liquibase:
+        enabled: true
+        change-log: classpath:db/migration/db.changelog-master.sql
+        contexts: dev 
+        default-schema: public
+    jpa:
+        database-platform: org.hibernate.dialect.PostgreSQLDialect
+        defer-datasource-initialization: false
+        hibernate:
+            ddl-auto: none
+            show-sql: true
+        properties:
+            hibernate:
+                format_sql: true
+                use_sql_comments: true
+                log_sql_parameters: true
+    kafka:
+        bootstrap-servers: http://host.docker.internal:9092
+        producer:
+            key-serializer: org.apache.kafka.common.serialization.StringSerializer
+            value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+        consumer:
+            group-id: kafka-consumer-group
+            key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+            value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+            auto-offset-reset: earliest
+            properties:
+                spring.json.trusted.packages: "*"
+                connections.max.idle.ms: 6000000
+            session:
+                timeout:
+                    ms: 60000
+            heartbeat:
+                interval:
+                    ms: 30000
+logging:
+    level:
+        com.netflix.eureka: DEBUG
+        org.springframework.cloud.netflix.eureka: DEBUG

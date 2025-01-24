@@ -1,0 +1,23 @@
+spring:
+    application:
+        name: app-control
+    profiles:
+        active: local
+server:
+    port: 8085
+    servlet:
+        context-path: /app-control-api
+springdoc:
+    api-docs:
+        path: /public/api-docs
+    swagger-ui:
+        path: /public/swagger-ui
+        operationsSorter: alpha
+        tagsSorter: alpha
+
+security:
+  jwt:
+    token:
+      secret-key: cXJlJGVkY2NyZTNhcmN6bmlnbWNrYWRjZXBodXx9hbXkJ23
+      expire-length: 604800000
+  
