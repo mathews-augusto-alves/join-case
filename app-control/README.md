@@ -50,7 +50,7 @@ App Control é uma aplicação para gerenciamento e controle de aplicações, pe
 ### Usando Docker Compose
 1. Clone o repositório:
 ```bash
-git clone https://github.com/seu-usuario/app-control.git
+git clone https://github.com/mathews-augusto-alves/join-case
 ```
 2. Navegue até o diretório do projeto:
 ```bash
