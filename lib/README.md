@@ -54,9 +54,10 @@ Para utilizar esta biblioteca, adicione a seguinte dependência ao seu `pom.xml`
 
 ## 🚀 Como Usar
 
-1. Importe a biblioteca no seu projeto
-2. Configure as propriedades necessárias no `application.yml`
-3. Utilize as entidades e repositórios conforme necessário
+1. Execute o comando `mvn clean install`
+2. Importe a biblioteca no seu projeto
+3. Configure as propriedades necessárias no `application.yml`
+4. Utilize as entidades e repositórios conforme necessário
 
 ## 📝 Observações
 

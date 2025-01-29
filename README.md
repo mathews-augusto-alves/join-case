@@ -9,8 +9,45 @@ Este repositório armazena os projetos listados abaixo.
 - #### project - aplicação front end.
 - #### service-consumer - aplicação responsável pela leitura das mensagens enviadas aos tópicos Kafka.
 
-### Para executar
-- Para excutar os projetos basta seguir as instruções que estão presentes no Readme.md de cada um.
+## ⚙️ Configuração
+
+### Instruções para Execução
+
+Existem duas maneiras de executar os projetos. Siga as opções abaixo conforme sua preferência:
+
+#### **Opção 1: Execução Manual**
+1. Navegue até o diretório de cada projeto e execute os seguintes comandos no terminal, na ordem:
+
+    - **Para o projeto `lib`**:
+      ```bash
+      cd ./lib && mvn clean install
+      ```
+
+    - **Para o projeto `app-control`**:
+      ```bash
+      cd ./app-control && mvn clean install
+      ```
+
+    - **Para o projeto `service-consumer`**:
+      ```bash
+      cd ./service-consumer && mvn clean install
+      ```
+
+    - **Para o projeto `project`**:
+      ```bash
+      cd ./project && npm ci
+      ```
+
+    Esses comandos são necessários para instalar todas as dependências dos projetos.
+
+2. Após instalar as dependências, execute o seguinte comando na raiz do repositório para iniciar os containers:
+
+    ```bash
+    docker-compose up --build -d
+    ```
+
+#### **Opção 2: Execução Automática**
+- Se preferir automatizar o processo, execute o script `build.sh` localizado na raiz do repositório. Ele irá realizar todas as etapas descritas na Opção 1 de forma automática.
 
 ## Contact
 

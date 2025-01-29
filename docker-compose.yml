@@ -10,7 +10,7 @@ services:
     ports:
       - "5432:5432"
     volumes:
-      - ~/postgres_data:/var/lib/postgresql/data
+      - ./init-db.sql:/docker-entrypoint-initdb.d/init-db.sql
     restart: unless-stopped
 
   zookeeper:
@@ -34,9 +34,10 @@ services:
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
       KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://host.docker.internal:9092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+
   service-consumer:
     build:
-      context: .
+      context: ./service-consumer
       dockerfile: Dockerfile
     container_name: service-consumer
     ports:
@@ -50,3 +51,37 @@ services:
       - postgres
       - kafka
     restart: unless-stopped
+
+  app-control:
+    build:
+      context: ./app-control
+      dockerfile: Dockerfile
+    container_name: app-control
+    ports:
+      - "8085:8085"
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://host.docker.internal:5432/db_teste_vendas
+      SPRING_DATASOURCE_USERNAME: usuario
+      SPRING_DATASOURCE_PASSWORD: senha
+      KAFKA_SERVER: kafka:9092
+    depends_on:
+      - service-consumer
+    restart: unless-stopped
+
+  nextjs-app:
+    build:
+      context: ./project
+      dockerfile: Dockerfile
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
+    depends_on:
+      - app-control
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "wget", "--no-verbose", "--tries=1", "--spider", "http://localhost:3000"]
+      interval: 30s
+      timeout: 10s
+      retries: 3

@@ -43,9 +43,6 @@ O Service Consumer é um microserviço Spring Boot responsável pelo processamen
 
 ## ⚙️ Configuração
 
-### Ambiente Local com Docker
-O projeto inclui arquivos `Dockerfile` e `docker-compose.yml` que configuram todo o ambiente necessário.
-
 #### Build da Aplicação
 Antes de iniciar os containers, é necessário gerar o arquivo JAR da aplicação:
 
@@ -55,60 +52,22 @@ mvn clean package -DskipTests
 
 #### Gerenciamento dos Containers
 
-1. **Iniciar todos os serviços**:
+1. **Build da imagem**:
 ```bash
-docker-compose up --build -d
+docker build -t service-consumer .
 ```
 
-2. **Verificar status dos containers**:
+2. **Execução da imagem**:
 ```bash
-docker-compose ps
-```
-
-3. **Visualizar logs**:
-```bash
-# Todos os serviços
-docker-compose logs
-
-# Serviço específico
-docker-compose logs service-consumer
-docker-compose logs postgres
-docker-compose logs kafka
-docker-compose logs zookeeper
-```
-
-4. **Parar os serviços**:
-```bash
-docker-compose stop
-```
-
-5. **Remover os containers**:
-```bash
-docker-compose down
-```
-
-6. **Remover containers e volumes**:
-```bash
-docker-compose down -v
-```
-
-7. **Rebuild e restart da aplicação**:
-```bash
-# Rebuild
-mvn clean package -DskipTests
-
-# Restart apenas do container da aplicação
-docker-compose up -d --build service-consumer
+docker run -p 9093:9093 service-consumer
 ```
 
 Isso irá iniciar:
 - Service Consumer (porta 9093)
-- PostgreSQL (porta 5432)
-  - Usuário: usuario
-  - Senha: senha
-  - Banco: db_teste_vendas
-- Zookeeper (porta 2181)
-- Kafka (porta 9092)
+
+Atenção!
+1. Certifique-se que o PostgreSQL está rodando
+2. Inicie o servidor Kafka
 
 ### Configurações da Aplicação
 
@@ -136,29 +95,6 @@ spring:
   mail:
     username: seu_email@gmail.com
     password: sua_senha
-```
-
-## 🚀 Como Executar
-
-### Com Docker (Recomendado)
-1. Build da aplicação:
-```bash
-mvn clean package -DskipTests
-```
-
-2. Inicie os serviços com Docker Compose:
-```bash
-docker-compose up -d
-```
-
-3. Verifique se todos os containers estão rodando:
-```bash
-docker-compose ps
-```
-
-4. Verifique os logs da aplicação:
-```bash
-docker-compose logs -f service-consumer
 ```
 
 ### Sem Docker

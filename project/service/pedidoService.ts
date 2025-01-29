@@ -16,13 +16,14 @@ const getJwtToken = (): string => {
     return "";
 };
 
-const headers = {
-    'Content-Type': 'application/json',
-    'Accept': 'application/json',
-    'Authorization': 'Bearer ' + getJwtToken()
-};
+
 
 export default async function enviarPedido(pedido: Pedido): Promise<SucessoResponse> {
+    const headers = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + getJwtToken()
+    };
     try {
         const response = await fetch(ENVIAR_PEDIDO_ENDPOINT, {
             method: 'POST',
@@ -52,6 +53,11 @@ export default async function enviarPedido(pedido: Pedido): Promise<SucessoRespo
 }
 
 export async function getPedidoPorUsuario(email: string): Promise<Pedido[]> {
+    const headers = {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Authorization': 'Bearer ' + getJwtToken()
+    };
     try {
         const response = await fetch(`${BUSCAR_PEDIDO_ENDPOINT}/${email}`, {
             method: 'GET',

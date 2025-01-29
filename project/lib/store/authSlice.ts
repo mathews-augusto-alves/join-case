@@ -30,9 +30,11 @@ export const validarTokenThunk = createAsyncThunk('auth/validarToken', async (_,
   }
   const jwt = localStorage.getItem('jwt');
   try {
-    const result = await validarToken(jwt ?? '');
-    if (!result) {
-      dispatch(authSlice.actions.logout());
+    if(jwt) {
+      const result = await validarToken(jwt ?? '');
+      if (!result) {
+        dispatch(authSlice.actions.logout());
+      }
     }
   } catch (error) {
     dispatch(authSlice.actions.logout());
