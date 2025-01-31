@@ -72,6 +72,8 @@ services:
     build:
       context: ./project
       dockerfile: Dockerfile
+      args:
+        CODESPACE_NAME: ${CODESPACE_NAME}
     ports:
       - "3000:3000"
     environment:

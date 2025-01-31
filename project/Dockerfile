@@ -23,7 +23,7 @@ COPY production.env production.env
 # Adicionar argumento para o build
 ARG CODESPACE_NAME
 ARG NEXT_PUBLIC_API_URL
-ENV NEXT_PUBLIC_API_URL=https://${CODESPACE_NAME}-8085.github.dev
+ENV NEXT_PUBLIC_API_URL=https://${CODESPACE_NAME}-8085.app.github.dev
 ENV NEXT_TELEMETRY_DISABLED 1
 RUN npm run build
 
@@ -54,7 +54,7 @@ ENV PORT 3000
 ENV HOSTNAME "0.0.0.0"
 ARG NEXT_PUBLIC_API_URL
 ARG CODESPACE_NAME
-ENV NEXT_PUBLIC_API_URL=https://${CODESPACE_NAME}-8085.github.dev
+ENV NEXT_PUBLIC_API_URL=https://${CODESPACE_NAME}-8085.app.github.dev
 
 # Comando para executar a aplicação
 CMD ["node", "server.js"]
