@@ -1,7 +1,7 @@
 import { PaginacaoResponse, Produto, ProdutoFilter } from '@/lib/types';
 import CustomException from '@/lib/exception/CustomException';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8085';
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const ENDPOINTS = {
     ALL_PRODUTOS: `${API_URL}/app-control-api/public/produtos/all`,
     PRODUTOS_BY_CATEGORIA: `${API_URL}/app-control-api/public/produtos-by-categorias/all`, 

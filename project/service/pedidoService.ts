@@ -1,7 +1,7 @@
 import { Pedido, SucessoResponse } from '@/lib/types';
 import CustomException from '@/lib/exception/CustomException';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8085';
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const ENVIAR_PEDIDO_ENDPOINT = `${API_URL}/app-control-api/private/create/pedido`;
 const BUSCAR_PEDIDO_ENDPOINT = `${API_URL}/app-control-api/private/pedido-by-usuario`;
 

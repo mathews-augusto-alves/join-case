@@ -2,7 +2,7 @@ import { jwtDecode } from 'jwt-decode';
 import { Usuario } from '@/lib/types';
 import CustomException from '@/lib/exception/CustomException';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8085';
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const LOGIN_ENDPOINT = `${API_URL}/app-control-api/public/login`;
 const VALIDATE_TOKEN_ENDPOINT = `${API_URL}/app-control-api/public/valid-token`;
 

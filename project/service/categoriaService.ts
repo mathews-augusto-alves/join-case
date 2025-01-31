@@ -1,10 +1,11 @@
 import { Categorias } from '@/lib/types';
 import CustomException from '@/lib/exception/CustomException';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8085';
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const CATEGORIAS_ENDPOINT = `${API_URL}/app-control-api/public/categorias/all`;
 
 export default async function getAllCategorias(): Promise<Categorias[]> {
+    console.log(process.env.NEXT_PUBLIC_API_URL)
     try {
         const response = await fetch(CATEGORIAS_ENDPOINT, {
             method: 'POST',

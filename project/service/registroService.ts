@@ -1,7 +1,7 @@
 import CustomException from '@/lib/exception/CustomException';
 import { SucessoResponse } from '@/lib/types';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8085';
+const API_URL = process.env.NEXT_PUBLIC_API_URL;
 const REGISTRO_ENDPOINT = `${API_URL}/app-control-api/public/register`;
 
 const headers = {

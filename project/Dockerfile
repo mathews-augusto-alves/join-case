@@ -2,7 +2,8 @@
 FROM node:18-alpine AS deps
 WORKDIR /app
 
-# Copiar arquivos de dependências
+# Copiar arquivos de dependências e o arquivo .env
+COPY production.env production.env
 COPY package.json package-lock.json ./
 
 # Instalar dependências
@@ -16,7 +17,13 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
 
-# Criar build de produção
+# Copiar o arquivo .env para o container
+COPY production.env production.env
+
+# Adicionar argumento para o build
+ARG CODESPACE_NAME
+ARG NEXT_PUBLIC_API_URL
+ENV NEXT_PUBLIC_API_URL=https://${CODESPACE_NAME}-8085.github.dev
 ENV NEXT_TELEMETRY_DISABLED 1
 RUN npm run build
 
@@ -42,10 +49,12 @@ USER nextjs
 # Expor porta
 EXPOSE 3000
 
-ARG NEXT_PUBLIC_API_URL
-ENV NEXT_PUBLIC_API_URL $NEXT_PUBLIC_API_URL
+# Adicionar novamente a variável de ambiente para produção
 ENV PORT 3000
 ENV HOSTNAME "0.0.0.0"
+ARG NEXT_PUBLIC_API_URL
+ARG CODESPACE_NAME
+ENV NEXT_PUBLIC_API_URL=https://${CODESPACE_NAME}-8085.github.dev
 
 # Comando para executar a aplicação
-CMD ["node", "server.js"] 
+CMD ["node", "server.js"]
