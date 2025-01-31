@@ -1,6 +1,6 @@
 spring:
     datasource:
-        url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/db_teste_vendas}
+        url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://172.17.0.1:5432/db_teste_vendas}
         username: ${SPRING_DATASOURCE_USERNAME:usuario}
         password: ${SPRING_DATASOURCE_PASSWORD:senha}
         driverClassName: org.postgresql.Driver
@@ -16,7 +16,7 @@ spring:
                 use_sql_comments: true
                 log_sql_parameters: true
     kafka:
-        bootstrap-servers: http://host.docker.internal:9092
+        bootstrap-servers: http://172.17.0.1:9092
         producer:
             key-serializer: org.apache.kafka.common.serialization.StringSerializer
             value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
