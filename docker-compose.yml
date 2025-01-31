@@ -76,7 +76,7 @@ services:
       - "3000:3000"
     environment:
       NODE_ENV: production
-      NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
+      NEXT_PUBLIC_API_URL: https://${CODESPACE_NAME}-8085.github.dev
     depends_on:
       - app-control
     restart: unless-stopped
