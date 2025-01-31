@@ -7,8 +7,6 @@ server:
     port: 8085
     servlet:
         context-path: /app-control-api
-    ssl:
-        enabled: true
 springdoc:
     api-docs:
         path: /public/api-docs

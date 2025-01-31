@@ -32,7 +32,7 @@ services:
     environment:
       KAFKA_BROKER_ID: 1
       KAFKA_ZOOKEEPER_CONNECT: zookeeper:2181
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://host.docker.internal:9092
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://172.17.0.1:9092
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
 
   service-consumer:
@@ -43,7 +43,7 @@ services:
     ports:
       - "9093:9093"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://host.docker.internal:5432/db_teste_vendas
+      SPRING_DATASOURCE_URL: jdbc:postgresql://172.17.0.1:5432/db_teste_vendas
       SPRING_DATASOURCE_USERNAME: usuario
       SPRING_DATASOURCE_PASSWORD: senha
       SPRING_KAFKA_BOOTSTRAP-SERVERS: kafka:9092
@@ -60,7 +60,7 @@ services:
     ports:
       - "8085:8085"
     environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://host.docker.internal:5432/db_teste_vendas
+      SPRING_DATASOURCE_URL: jdbc:postgresql://172.17.0.1:5432/db_teste_vendas
       SPRING_DATASOURCE_USERNAME: usuario
       SPRING_DATASOURCE_PASSWORD: senha
       KAFKA_SERVER: kafka:9092
