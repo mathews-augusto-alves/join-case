@@ -48,6 +48,20 @@ Existem duas maneiras de executar os projetos. Siga as opções abaixo conforme 
 
 #### **Opção 2: Execução Automática**
 - Se preferir automatizar o processo, execute o script `build.sh` localizado na raiz do repositório. Ele irá realizar todas as etapas descritas na Opção 1 de forma automática.
+- Caso você esteja executando no codespace do git, certifique-se que a versão do java instalada seja a 17 ou superior. Caso seja inferior execute o seguinte comando:
+
+  ```bash
+    sdk install java 17.0.9-amzn
+  ```
+- Caso você esteja executando no codespace do git e ocorra erro ao acessar o front, provavelmente você precisará expor as portas das principais aplicações, execute os comandos:
+
+  ```bash
+    gh codespace ports visibility 8085:public -c $CODESPACE_NAME
+  ```
+
+  ```bash
+    gh codespace ports visibility 3000:public -c $CODESPACE_NAME
+  ```
 
 ## Contact
 
